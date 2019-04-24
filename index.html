@@ -15,26 +15,33 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
-    integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
-    crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
-    integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
-    crossorigin=""></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+      integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+      integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+      crossorigin=""
+    ></script>
     <style>
-     .accordion__buttons{
-         display: flex;
-         justify-content: space-around;
-     }
-     .accordion__buttons button{
-         width: 300px;
-     }
-     .accordion__content{
-         width: 90%;
-         background: rgb(204, 204, 204);
-         margin: 0 auto;
-     }
-     #mapid { height: 480px; }
+      .accordion__buttons {
+        display: flex;
+        justify-content: space-around;
+      }
+      .accordion__buttons button {
+        width: 300px;
+      }
+      .accordion__content {
+        width: 90%;
+        background: rgb(204, 204, 204);
+        margin: 0 auto;
+      }
+      #mapid {
+        height: 480px;
+      }
     </style>
   </head>
   <body>
@@ -62,24 +69,13 @@
         </button>
       </div>
       <div class="accordion__content">
-        <div
-          id="map"
-          class="collapse show"
-          data-parent="#accor"
-        >
-         
-            MAP
-            <div id="mapid"></div>
+        <div id="map" class="collapse show" data-parent="#accor">
+          MAP
+          <div id="mapid"></div>
         </div>
-        <div
-        id="table"
-        class="collapse "
-        data-parent="#accor"
-      >
-       
+        <div id="table" class="collapse " data-parent="#accor">
           Table
-       
-      </div>
+        </div>
       </div>
     </div>
     <script
@@ -99,26 +95,41 @@
     ></script>
 
     <script>
-var map = L.map('mapid').setView([54.372158, 18.638306], 15);
-L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    maxZoom: 18,
-    id: 'mapbox.streets',
-    accessToken: 'pk.eyJ1IjoidGF6aXMiLCJhIjoiY2p1djdweHgwMGpndzN5cWV2YTJlOXg3dCJ9.BNvCwfb8GAxRVHdU8JixRA'
-}).addTo(map);
+      var i = 0;
+      var markersArray = []
+      var map = L.map("mapid").setView([54.372158, 18.638306], 15);
+      L.tileLayer(
+        "https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}",
+        {
+          attribution:
+            'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+          maxZoom: 18,
+          id: "mapbox.streets",
+          accessToken:
+            "pk.eyJ1IjoidGF6aXMiLCJhIjoiY2p1djdweHgwMGpndzN5cWV2YTJlOXg3dCJ9.BNvCwfb8GAxRVHdU8JixRA"
+        }
+      ).addTo(map);
 
+      function onMapClick(e) {
+        var marker = L.marker([e.latlng.lat, e.latlng.lng], {
+          title: `Marker ${i}`,
+          alt: `Marker ${i}`,
+          draggable: true
+        })
+          .addTo(map)
+          .on("dragend", function() {
+            
+          });
+        marker.bindPopup(`<h5>Marker ${i}</h5>`).openPopup();
+        markersArray.push(marker)
+    i++
+      }
 
-
-function onMapClick(e) {
-  
-   
-    var marker = L.marker([e.latlng.lat, e.latlng.lng],{draggable: true}).addTo(map).on('dragend', function(){
-    console.log(this._latlng)
-});
-}
-
-map.on('click', onMapClick);
-
+      map.on("click", onMapClick);
+let body = $('body')
+      function showMarkers(){
+          
+      }
     </script>
   </body>
 </html>
