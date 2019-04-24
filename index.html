@@ -78,6 +78,7 @@
         </div>
       </div>
     </div>
+    <div class="body"></div>
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -96,7 +97,7 @@
 
     <script>
       var i = 0;
-      var markersArray = []
+      var markersArray = [];
       var map = L.map("mapid").setView([54.372158, 18.638306], 15);
       L.tileLayer(
         "https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}",
@@ -118,17 +119,26 @@
         })
           .addTo(map)
           .on("dragend", function() {
-            
+              showMarkers()
           });
         marker.bindPopup(`<h5>Marker ${i}</h5>`).openPopup();
-        markersArray.push(marker)
-    i++
+        markersArray.push(marker);
+        showMarkers();
+        i++;
       }
 
       map.on("click", onMapClick);
-let body = $('body')
-      function showMarkers(){
-          
+      let body = $(".body");
+      function showMarkers() {
+        body.html("");
+        markersArray.map(function(x) {
+          console.log(x._latlng);
+          body.append(
+            `<div>${x.options.title}<span> Lat: ${
+              x._latlng.lat
+            }</span>}<span> Lng: ${x._latlng.lng}</span></div>`
+          );
+        });
       }
     </script>
   </body>
