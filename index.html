@@ -111,35 +111,35 @@
         }
       ).addTo(map);
 
-      function onMapClick(e) {
-        var marker = L.marker([e.latlng.lat, e.latlng.lng], {
-          title: `Marker ${i}`,
-          alt: `Marker ${i}`,
-          draggable: true
-        })
-          .addTo(map)
-          .on("dragend", function() {
-              showMarkers()
-          });
-        marker.bindPopup(`<h5>Marker ${i}</h5>`).openPopup();
-        markersArray.push(marker);
-        showMarkers();
-        i++;
-      }
+    //   function onMapClick(e) {
+    //     var marker = L.marker([e.latlng.lat, e.latlng.lng], {
+    //       title: `Marker ${i}`,
+    //       alt: `Marker ${i}`,
+    //       draggable: true
+    //     })
+    //       .addTo(map)
+    //       .on("dragend", function() {
+    //           showMarkers()
+    //       });
+    //     marker.bindPopup(`<h5>Marker ${i}</h5>`).openPopup();
+    //     markersArray.push(marker);
+    //     showMarkers();
+    //     i++;
+    //   }
 
-      map.on("click", onMapClick);
-      let body = $(".body");
-      function showMarkers() {
-        body.html("");
-        markersArray.map(function(x) {
-          console.log(x._latlng);
-          body.append(
-            `<div>${x.options.title}<span> Lat: ${
-              x._latlng.lat
-            }</span>}<span> Lng: ${x._latlng.lng}</span></div>`
-          );
-        });
-      }
+    //   map.on("click", onMapClick);
+    //   let body = $(".body");
+    //   function showMarkers() {
+    //     body.html("");
+    //     markersArray.map(function(x) {
+    //       console.log(x._latlng);
+    //       body.append(
+    //         `<div>${x.options.title}<span> Lat: ${
+    //           x._latlng.lat
+    //         }</span>}<span> Lng: ${x._latlng.lng}</span></div>`
+    //       );
+    //     });
+    //   }
     </script>
   </body>
 </html>
