@@ -26,23 +26,7 @@
       integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
       crossorigin=""
     ></script>
-    <style>
-      .accordion__buttons {
-        display: flex;
-        justify-content: space-around;
-      }
-      .accordion__buttons button {
-        width: 300px;
-      }
-      .accordion__content {
-        width: 90%;
-        background: rgb(204, 204, 204);
-        margin: 0 auto;
-      }
-      #mapid {
-        height: 480px;
-      }
-    </style>
+    <link rel="stylesheet" href="main.css">
   </head>
   <body>
     <div class="accordion" id="accor">
@@ -70,15 +54,32 @@
       </div>
       <div class="accordion__content">
         <div id="map" class="collapse show" data-parent="#accor">
-          MAP
-          <div id="mapid"></div>
+          <div class="accordion__title">
+            Map
+          </div>
+          <div id="content__map"></div>
         </div>
         <div id="table" class="collapse " data-parent="#accor">
-          Table
+          <div class="accordion__title">
+            Table
+          </div>
+          <div class="content__table table-responsive">
+            <table class="table ">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Latitude</th>
+                  <th scope="col">Longitude</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
-    <div class="body"></div>
+
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -95,51 +96,6 @@
       crossorigin="anonymous"
     ></script>
 
-    <script>
-      var i = 0;
-      var markersArray = [];
-      var map = L.map("mapid").setView([54.372158, 18.638306], 15);
-      L.tileLayer(
-        "https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}",
-        {
-          attribution:
-            'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-          maxZoom: 18,
-          id: "mapbox.streets",
-          accessToken:
-            "pk.eyJ1IjoidGF6aXMiLCJhIjoiY2p1djdweHgwMGpndzN5cWV2YTJlOXg3dCJ9.BNvCwfb8GAxRVHdU8JixRA"
-        }
-      ).addTo(map);
-
-    //   function onMapClick(e) {
-    //     var marker = L.marker([e.latlng.lat, e.latlng.lng], {
-    //       title: `Marker ${i}`,
-    //       alt: `Marker ${i}`,
-    //       draggable: true
-    //     })
-    //       .addTo(map)
-    //       .on("dragend", function() {
-    //           showMarkers()
-    //       });
-    //     marker.bindPopup(`<h5>Marker ${i}</h5>`).openPopup();
-    //     markersArray.push(marker);
-    //     showMarkers();
-    //     i++;
-    //   }
-
-    //   map.on("click", onMapClick);
-    //   let body = $(".body");
-    //   function showMarkers() {
-    //     body.html("");
-    //     markersArray.map(function(x) {
-    //       console.log(x._latlng);
-    //       body.append(
-    //         `<div>${x.options.title}<span> Lat: ${
-    //           x._latlng.lat
-    //         }</span>}<span> Lng: ${x._latlng.lng}</span></div>`
-    //       );
-    //     });
-    //   }
-    </script>
+    <script src="main.js"></script>
   </body>
 </html>

@@ -1,0 +1,27 @@
+.accordion__buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+  }
+  .accordion__buttons button {
+    width: 300px;
+    font-weight: bold;
+  }
+  .accordion__title {
+    text-align: center;
+    font-size: calc(0.03125 * 100vw + 20px);
+    font-weight: bold;
+    margin-bottom: 50px;
+  }
+  .accordion__content {
+    width: 90%;
+
+    margin: 50px auto;
+  }
+  #content__map {
+    height: 480px;
+  }
+  .table thead{
+      background: #007bff;
+      color: white;
+  }
